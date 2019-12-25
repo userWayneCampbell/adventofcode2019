@@ -23,7 +23,7 @@ pub fn min_intersections(str_in: String) -> i32 {
                 /* if that x,y is already recorded, this is an intersection */
                 else {
                     /* Only add intersection if not current line */
-                    if grid.get(&(x,y)).unwrap() != &n {
+                    if grid.get(&(x, y)).unwrap() != &n {
                         intersections.push((x, y));
                     }
                 }
