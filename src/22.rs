@@ -3,18 +3,18 @@ struct Deck {
 }
 
 impl Deck {
-    fn cut(&mut self, num: f64) {
-        if num.is_sign_positive() {
-            let mut beginning = self.v[0..num.abs().trunc() as usize].to_vec();
-            let mut end = self.v[num.abs().trunc() as usize..].to_vec();
+    fn cut(&mut self, num: i32) {
+        if num.is_positive() {
+            let mut beginning = self.v[0..num.abs() as usize].to_vec();
+            let mut end = self.v[num.abs() as usize..].to_vec();
             end.append(&mut beginning);
             self.v = end;
             //end
         }
         else {
             println!("negative {}", num);
-            let mut beginning = self.v[(self.v.len() - num.abs().trunc() as usize)..].to_vec();
-            let mut end = self.v[0..(self.v.len() - num.abs().trunc() as usize)].to_vec();
+            let mut beginning = self.v[(self.v.len() - num.abs() as usize)..].to_vec();
+            let mut end = self.v[0..(self.v.len() - num.abs() as usize)].to_vec();
             beginning.append(&mut end);
             println!("negative {:?} ", beginning);
             self.v = beginning;
@@ -42,7 +42,7 @@ mod tests {
         let v_inp: Vec<usize> = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         let mut d = Deck { v: v_inp };
 
-        d.cut(3.0);
+        d.cut(3);
 
         let v_exp: Vec<usize> = vec![3, 4, 5, 6, 7, 8, 9, 0, 1, 2];
         assert_eq!(v_exp, d.v);
@@ -51,7 +51,7 @@ mod tests {
         let v_inp: Vec<usize> = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         let mut d = Deck { v: v_inp };
 
-        d.cut(-4.0);
+        d.cut(-4);
 
         let v_exp: Vec<usize> = vec![6, 7, 8, 9, 0, 1, 2, 3, 4, 5];
         assert_eq!(v_exp, d.v);
@@ -97,7 +97,7 @@ mod tests {
         let v_inp = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         let mut d = Deck { v: v_inp };
 
-        d.cut(6.0);
+        d.cut(6);
         d.increment(7);
         d.v.reverse();
 
@@ -112,7 +112,7 @@ mod tests {
 
         d.increment(7);
         d.increment(9);
-        d.cut(-2.0);
+        d.cut(-2);
 
         let v_exp = vec![6, 3, 0, 7, 4, 1, 8, 5, 2, 9];
         assert_eq!(v_exp, d.v);
@@ -124,15 +124,15 @@ mod tests {
         let mut d = Deck { v: v_inp };
 
         d.v.reverse();
-        d.cut(-2.0);
+        d.cut(-2);
         d.increment(7);
-        d.cut(8.0);
-        d.cut(-4.0);
+        d.cut(8);
+        d.cut(-4);
         d.increment(7);
-        d.cut(3.0);
+        d.cut(3);
         d.increment(9);
         d.increment(3);
-        d.cut(-1.0);
+        d.cut(-1);
 
         let v_exp = vec![9, 2, 5, 8, 1, 4, 7, 0, 3, 6];
         assert_eq!(v_exp, d.v);
