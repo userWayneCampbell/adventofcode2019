@@ -9,14 +9,11 @@ impl Deck {
             let mut end = self.v[num.abs() as usize..].to_vec();
             end.append(&mut beginning);
             self.v = end;
-            //end
-        }
-        else {
-            println!("negative {}", num);
+        //end
+        } else {
             let mut beginning = self.v[(self.v.len() - num.abs() as usize)..].to_vec();
             let mut end = self.v[0..(self.v.len() - num.abs() as usize)].to_vec();
             beginning.append(&mut end);
-            println!("negative {:?} ", beginning);
             self.v = beginning;
             //beginning
         }
@@ -30,6 +27,37 @@ impl Deck {
         }
         self.v = out_vector
     }
+}
+
+fn main() {
+    // get data
+    let input = include_str!("../data/22.in").to_string();
+
+    let mut factory_deck: Vec<usize> = Vec::new();
+
+    // create vector of decks
+    for n in 0..10007 {
+        factory_deck.push(n);
+    }
+    let mut d = Deck { v: factory_deck };
+
+    /* iterate through the commands, following instructions */
+    for line in input.lines() {
+        let mut iter = line.split_whitespace();
+        match iter.next() {
+            Some("deal") => match iter.nth(1) {
+                Some("new") => d.v.reverse(),
+                Some("increment") => d.increment(iter.nth(0).unwrap().parse::<usize>().unwrap()),
+                _ => (),
+            },
+            Some("cut") => d.cut(iter.nth(0).unwrap().parse::<i32>().unwrap()),
+            _ => (),
+        };
+    }
+
+    /* find index of card 2019 */
+    let index = d.v.iter().position(|a| *a == 2019).unwrap();
+    println!("{}", index);
 }
 
 #[cfg(test)]

@@ -1,8 +1,5 @@
 fn do_phase(str_in: String) -> String {
-    let num_vec: Vec<u32> = str_in
-        .chars()
-        .map(|a| a.to_digit(10).unwrap())
-        .collect();
+    let num_vec: Vec<u32> = str_in.chars().map(|a| a.to_digit(10).unwrap()).collect();
 
     let mut str_out: String = "".to_string();
 
