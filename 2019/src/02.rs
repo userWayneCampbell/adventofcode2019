@@ -1,4 +1,4 @@
-use intcode::{Computer, OpCode};
+use intcode::Computer;
 
 fn main() {
     // 01
@@ -9,7 +9,7 @@ fn main() {
 
     while computer.execute().is_ok() {}
 
-    assert_eq!(computer.memory[0], 3716250);
+    assert_eq!(computer.memory[0], 3_716_250);
 
     // 02
     loop {

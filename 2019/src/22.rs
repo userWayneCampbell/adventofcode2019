@@ -47,10 +47,10 @@ fn main() {
         match iter.next() {
             Some("deal") => match iter.nth(1) {
                 Some("new") => d.v.reverse(),
-                Some("increment") => d.increment(iter.nth(0).unwrap().parse::<usize>().unwrap()),
+                Some("increment") => d.increment(iter.next().unwrap().parse::<usize>().unwrap()),
                 _ => (),
             },
-            Some("cut") => d.cut(iter.nth(0).unwrap().parse::<i32>().unwrap()),
+            Some("cut") => d.cut(iter.next().unwrap().parse::<i32>().unwrap()),
             _ => (),
         };
     }
