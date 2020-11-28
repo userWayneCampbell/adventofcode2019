@@ -8,7 +8,7 @@ fn count_orbits(orbits: &HashMap<&str, &str>, key: &str, orbit_count: &mut usize
         if let Some(result) = orbits.get(key) {
             print!("<-{}", result);
             *orbit_count += 1;
-            count_orbits(&orbits, result, orbit_count);
+            count_orbits(orbits, result, orbit_count);
         }
     }
 }
@@ -35,7 +35,7 @@ fn main() -> std::io::Result<()> {
     for (right, left) in &orbits {
         /* increment for orbit in hashmap */
         orbit_count += 1;
-        print!("{}<-{}", right.to_string(), left.to_string());
+        print!("{}<-{}", (*right).to_string(), (*left).to_string());
         /* recursive function to increment orbit_count for all found planets */
         count_orbits(&orbits, left, &mut orbit_count);
         println!();

@@ -1,7 +1,7 @@
 fn main() -> std::io::Result<()> {
-    let start = 246540;
+    let start = 246_540;
     //let end = 247000;
-    let end = 787419;
+    let end = 787_419;
 
     let numbers: Vec<i32> = (start..=end).collect();
 
