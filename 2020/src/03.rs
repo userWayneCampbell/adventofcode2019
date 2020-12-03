@@ -36,14 +36,17 @@ fn calculate_trees(tiles: &[Vec<Tile>], right: usize, down: usize) -> usize {
         .map(|a| (a * right) % tiles[0].len())
         .collect();
 
-    ys.iter().zip(&xs).map(|(x, y)| {
-        let tile = &tiles[*x as usize][*y as usize];
-        if matches!(tile, Tile::Tree) {
-            1
-        } else {
-            0
-        }
-    }).sum()
+    ys.iter()
+        .zip(&xs)
+        .map(|(x, y)| {
+            let tile = &tiles[*x as usize][*y as usize];
+            if matches!(tile, Tile::Tree) {
+                1
+            } else {
+                0
+            }
+        })
+        .sum()
 }
 
 #[derive(Debug)]
