@@ -46,10 +46,10 @@ fn part2(input: &str) -> usize {
             let name = words[1].trim_end_matches(':').chars().next().unwrap();
             let passwords: Vec<_> = words[2].chars().collect();
 
-            if (passwords[lengths[0] - 1] == name) != (passwords[lengths[1] - 1] == name) {
-                1
-            } else {
+            if (passwords[lengths[0] - 1] == name) == (passwords[lengths[1] - 1] == name) {
                 0
+            } else {
+                1
             }
         })
         .sum()
