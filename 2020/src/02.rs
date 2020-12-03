@@ -5,12 +5,12 @@ fn main() {
 }
 
 fn p(input: &str) -> (Vec<&str>, Vec<usize>) {
-        let words: Vec<_> = input.split_ascii_whitespace().collect();
-        let lengths: Vec<_> = words[0]
-            .split('-')
-            .map(|n| n.parse::<usize>().unwrap())
-            .collect();
-        (words, lengths)
+    let words: Vec<_> = input.split_ascii_whitespace().collect();
+    let lengths: Vec<_> = words[0]
+        .split('-')
+        .map(|n| n.parse::<usize>().unwrap())
+        .collect();
+    (words, lengths)
 }
 
 fn part1(input: &str) -> usize {
