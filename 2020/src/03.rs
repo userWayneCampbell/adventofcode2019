@@ -19,12 +19,12 @@ fn main() {
     // part 2
     let slopes = vec![(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
 
-    let mut product = 1;
-    for (right, down) in slopes {
-        let a = calculate_trees(&tiles, right, down);
-        product *= a;
-    }
-    println!("part2: {}", product);
+    let result: usize = slopes
+        .iter()
+        .map(|(right, down)| calculate_trees(&tiles, *right, *down))
+        .product();
+
+    println!("part2: {}", result);
 }
 
 fn calculate_trees(tiles: &[Vec<Tile>], right: usize, down: usize) -> usize {
