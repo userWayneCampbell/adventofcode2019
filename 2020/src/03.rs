@@ -14,6 +14,7 @@ fn main() {
 
     // part 1
     let second = calculate_trees(&tiles, 3, 1);
+    assert_eq!(207, second);
     println!("part1: {}", second);
 
     // part 2
@@ -24,6 +25,7 @@ fn main() {
         .map(|(right, down)| calculate_trees(&tiles, *right, *down))
         .product();
 
+    assert_eq!(2_655_892_800, result);
     println!("part2: {}", result);
 }
 
@@ -40,11 +42,7 @@ fn calculate_trees(tiles: &[Vec<Tile>], right: usize, down: usize) -> usize {
         .zip(&xs)
         .map(|(x, y)| {
             let tile = &tiles[*x as usize][*y as usize];
-            if matches!(tile, Tile::Tree) {
-                1
-            } else {
-                0
-            }
+            matches!(tile, Tile::Tree) as usize
         })
         .sum()
 }
