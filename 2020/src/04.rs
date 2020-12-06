@@ -1,5 +1,3 @@
-//228
-
 fn main() {
     let input = std::fs::read_to_string("data/04.in").unwrap();
 
