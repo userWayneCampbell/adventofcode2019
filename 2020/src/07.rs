@@ -33,8 +33,7 @@ fn main() {
 
         let value = value
             .split(&[',', '.'][..])
-            .filter(|x| !x.is_empty())
-            .map(str::trim)
+            .filter_map(|x| if x.is_empty() { None } else { Some(x.trim()) })
             .collect::<Vec<_>>();
 
         if value == ["no other bags"] {
