@@ -15,10 +15,10 @@ impl FromStr for Instruction {
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         let input: Vec<&str> = input.split_ascii_whitespace().collect();
         let arg = input[1].parse().unwrap();
-        match input[0] {
-            "acc" => Ok(Self::ACC(arg)),
-            "jmp" => Ok(Self::JMP(arg)),
-            "nop" => Ok(Self::NOP(arg)),
+        match input.get(0) {
+            Some(&"acc") => Ok(Self::ACC(arg)),
+            Some(&"jmp") => Ok(Self::JMP(arg)),
+            Some(&"nop") => Ok(Self::NOP(arg)),
             _ => unreachable!(),
         }
     }
@@ -40,7 +40,7 @@ impl State {
         Self { pc: 0, acc: 0 }
     }
 
-    fn step(&mut self, prog: &Vec<Instruction>) -> Option<Flag> {
+    fn step(&mut self, prog: &[Instruction]) -> Option<Flag> {
         prog.get(self.pc).map_or(Some(Flag::HALT), |inst| {
             if match inst {
                 Instruction::ACC(arg) => {
@@ -48,7 +48,7 @@ impl State {
                     true
                 }
                 Instruction::JMP(arg) => {
-                    self.pc = (self.pc as isize + arg) as usize;
+                    self.pc = self.pc.wrapping_add(*arg as usize);
                     false
                 }
                 Instruction::NOP(_) => true,
@@ -61,7 +61,7 @@ impl State {
     }
 }
 
-fn run_to_completion(prog: &Vec<Instruction>) -> (Option<Flag>, State) {
+fn run_to_completion(prog: &[Instruction]) -> (Option<Flag>, State) {
     let mut state = State::new();
     let mut visited: HashSet<usize> = HashSet::new();
     while visited.insert(state.pc) {
