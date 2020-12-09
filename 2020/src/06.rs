@@ -4,10 +4,7 @@ fn main() {
     let groups: Vec<(usize, Vec<char>)> = input
         .split("\n\n")
         .map(|entry| {
-            let group: Vec<char> = entry
-                .lines()
-                .flat_map(str::chars)
-                .collect();
+            let group: Vec<char> = entry.lines().flat_map(str::chars).collect();
             (entry.lines().count(), group)
         })
         .collect();
