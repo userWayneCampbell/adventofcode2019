@@ -41,7 +41,7 @@ impl State {
     }
 
     fn step(&mut self, prog: &Vec<Instruction>) -> Option<Flag> {
-        if let Some(inst) = prog.get(self.pc) {
+        prog.get(self.pc).map_or(Some(Flag::HALT), |inst| {
             if match inst {
                 Instruction::ACC(arg) => {
                     self.acc += arg;
@@ -57,9 +57,7 @@ impl State {
                 self.pc += 1;
             }
             None
-        } else {
-            Some(Flag::HALT)
-        }
+        })
     }
 }
 
