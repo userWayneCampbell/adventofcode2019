@@ -10,14 +10,12 @@ fn main() {
         let mut found = false;
         for x in preamble {
             for y in preamble {
-                if x != y {
-                    if *x + *y == *num {
-                        found = true;
-                    }
+                if x != y && *x + *y == *num {
+                    found = true;
                 }
             }
         }
-        if found == false {
+        if !found {
             part1 = *num;
             break;
         }
@@ -29,7 +27,7 @@ fn main() {
         for window in input.windows(i) {
             if window.iter().sum::<usize>() == part1 {
                 let mut window = window.to_owned();
-                window.sort();
+                window.sort_unstable();
                 part2 = window.first().unwrap() + window.last().unwrap();
             }
         }
