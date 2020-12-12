@@ -108,5 +108,8 @@ pub fn bench_11(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, bench_1, bench_2, bench_3, bench_4, bench_5, bench_6, bench_7, bench_8, bench_9, bench_10, bench_11);
+criterion_group!(
+    benches, bench_1, bench_2, bench_3, bench_4, bench_5, bench_6, bench_7, bench_8, bench_9,
+    bench_10, bench_11
+);
 criterion_main!(benches);

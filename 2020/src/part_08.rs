@@ -92,7 +92,7 @@ pub fn eight() -> (isize, isize) {
         mod_tape[i] = op;
 
         if let (Some(_), state) = run_to_completion(&mod_tape) {
-            return (part1, state.acc)
+            return (part1, state.acc);
         }
     }
     unreachable!();

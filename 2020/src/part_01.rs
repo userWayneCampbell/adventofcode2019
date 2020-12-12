@@ -20,7 +20,7 @@ pub fn one() -> (u32, u32) {
             for mem3 in &memory {
                 if mem1 + mem2 + mem3 == 2020 {
                     let part2 = mem1 * mem2 * mem3;
-                    return (part1, part2)
+                    return (part1, part2);
                 }
             }
         }

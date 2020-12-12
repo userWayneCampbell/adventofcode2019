@@ -22,7 +22,7 @@ pub fn five() -> (usize, usize) {
 
     for x in *min..=*max {
         if !seats.contains(&x) {
-            return (*part1, x)
+            return (*part1, x);
         }
     }
     unreachable!();
