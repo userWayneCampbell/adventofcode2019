@@ -72,7 +72,7 @@ fn run_to_completion(prog: &[Instruction]) -> (Option<Flag>, State) {
     (None, state)
 }
 
-pub fn eight() -> (isize, isize) {
+#[must_use] pub fn eight() -> (isize, isize) {
     let tape: Vec<Instruction> = fs::read_to_string("data/08.in")
         .unwrap()
         .lines()

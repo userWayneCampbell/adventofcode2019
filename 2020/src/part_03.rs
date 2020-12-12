@@ -1,6 +1,6 @@
 use std::convert::TryFrom;
 
-pub fn three() -> (usize, usize) {
+#[must_use] pub fn three() -> (usize, usize) {
     let input = std::fs::read_to_string("data/03.1.in").unwrap();
 
     let mut tiles = vec![];

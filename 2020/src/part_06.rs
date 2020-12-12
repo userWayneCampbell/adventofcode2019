@@ -1,4 +1,4 @@
-pub fn six() -> (usize, usize) {
+#[must_use] pub fn six() -> (usize, usize) {
     let input = std::fs::read_to_string("data/06.in").unwrap();
 
     let groups: Vec<(usize, Vec<char>)> = input

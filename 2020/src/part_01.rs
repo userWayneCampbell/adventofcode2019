@@ -1,4 +1,4 @@
-pub fn one() -> (u32, u32) {
+#[must_use] pub fn one() -> (u32, u32) {
     let input = std::fs::read_to_string("data/01.in").unwrap();
     let memory: Vec<u32> = input
         .split_whitespace()
@@ -34,6 +34,6 @@ mod tests {
 
     #[test]
     fn test_one() {
-        assert_eq!((29929, 244300320), one());
+        assert_eq!((29929, 244_300_320), one());
     }
 }

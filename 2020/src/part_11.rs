@@ -17,7 +17,7 @@ impl Part {
     }
 
     /// step through until the current seats(last evaluated) == the new seats, then do summation of the '#'s
-    pub fn steps(&self, seats: Vec<Vec<char>>) -> usize {
+    #[must_use] pub fn steps(&self, seats: Vec<Vec<char>>) -> usize {
         let mut current_seats = seats;
         loop {
             let new_seats = self.step(&current_seats);
@@ -60,7 +60,7 @@ impl Part {
                 ];
 
                 match self {
-                    Part::One => {
+                    Self::One => {
                         let mut filled_neighbors: usize = 0;
                         for (x, y) in &xy {
                             let new_x = (row as i64) + x;
@@ -98,7 +98,7 @@ impl Part {
                             new_seats[row][col] = FILLED
                         }
                     }
-                    Part::Two => {
+                    Self::Two => {
                         let mut filled_neighbors: usize = 0;
                         for (x, y) in &xy {
                             let mut new_x = row as i64;

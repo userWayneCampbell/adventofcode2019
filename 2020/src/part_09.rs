@@ -1,4 +1,4 @@
-pub fn nine() -> (usize, usize) {
+#[must_use] pub fn nine() -> (usize, usize) {
     let input = std::fs::read_to_string("data/09.in").unwrap();
     let input: Vec<usize> = input.lines().map(|a| a.parse().unwrap()).collect();
 
@@ -40,6 +40,6 @@ mod tests {
 
     #[test]
     fn test_nine() {
-        assert_eq!((466456641, 55732936), nine());
+        assert_eq!((466_456_641, 55_732_936), nine());
     }
 }

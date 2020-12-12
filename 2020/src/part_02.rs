@@ -1,4 +1,4 @@
-pub fn two() -> (usize, usize) {
+#[must_use] pub fn two() -> (usize, usize) {
     let input = std::fs::read_to_string("data/02.in").unwrap();
     let part1 = part1(&input);
 

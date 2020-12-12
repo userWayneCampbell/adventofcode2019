@@ -1,4 +1,4 @@
-pub fn five() -> (usize, usize) {
+#[must_use] pub fn five() -> (usize, usize) {
     let input = std::fs::read_to_string("data/05.in").unwrap();
 
     let seats: Vec<usize> = input

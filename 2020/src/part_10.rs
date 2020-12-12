@@ -1,4 +1,4 @@
-pub fn ten() -> (usize, usize) {
+#[must_use] pub fn ten() -> (usize, usize) {
     let input = std::fs::read_to_string("data/10.in").unwrap();
     let mut input: Vec<usize> = input.lines().map(|a| a.parse().unwrap()).collect();
 
@@ -61,6 +61,6 @@ mod tests {
 
     #[test]
     fn test_ten() {
-        assert_eq!((2590, 226775649501184), ten());
+        assert_eq!((2590, 226_775_649_501_184), ten());
     }
 }

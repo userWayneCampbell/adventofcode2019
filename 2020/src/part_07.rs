@@ -21,7 +21,7 @@ impl Bags {
     }
 }
 
-pub fn seven() -> (usize, usize) {
+#[must_use] pub fn seven() -> (usize, usize) {
     let input = std::fs::read_to_string("data/07.in").unwrap();
     let mut bags = HashMap::new();
 

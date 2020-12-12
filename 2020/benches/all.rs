@@ -14,7 +14,7 @@ use criterion::{criterion_group, criterion_main, Criterion};
 pub fn bench_1(c: &mut Criterion) {
     c.bench_function("1_both", |b| {
         b.iter(|| {
-            assert_eq!((29929, 244300320), part_01::one());
+            assert_eq!((29929, 244_300_320), part_01::one());
         })
     });
 }
@@ -74,7 +74,7 @@ pub fn bench_8(c: &mut Criterion) {
 pub fn bench_9(c: &mut Criterion) {
     c.bench_function("9_both", |b| {
         b.iter(|| {
-            assert_eq!((466456641, 55732936), part_09::nine());
+            assert_eq!((466_456_641, 55_732_936), part_09::nine());
         })
     });
 }
@@ -82,7 +82,7 @@ pub fn bench_9(c: &mut Criterion) {
 pub fn bench_10(c: &mut Criterion) {
     c.bench_function("10_both", |b| {
         b.iter(|| {
-            assert_eq!((2590, 226775649501184), part_10::ten());
+            assert_eq!((2590, 226_775_649_501_184), part_10::ten());
         })
     });
 }

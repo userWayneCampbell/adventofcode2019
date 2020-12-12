@@ -1,4 +1,4 @@
-pub fn four() -> (usize, usize) {
+#[must_use] pub fn four() -> (usize, usize) {
     let input = std::fs::read_to_string("data/04.in").unwrap();
 
     let mut num = 0;
