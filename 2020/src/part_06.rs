@@ -1,4 +1,4 @@
-fn main() {
+pub fn six() -> (usize, usize) {
     let input = std::fs::read_to_string("data/06.in").unwrap();
 
     let groups: Vec<(usize, Vec<char>)> = input
@@ -19,9 +19,8 @@ fn main() {
             group.len()
         })
         .sum();
-    assert_eq!(6504, part1);
-    println!("part1: {:?}", part1);
 
+    // part2
     let mut part2_groups = groups;
     let part2: usize = part2_groups
         .iter_mut()
@@ -35,6 +34,15 @@ fn main() {
                 .sum::<usize>()
         })
         .sum();
-    println!("part2: {}", part2);
-    assert_eq!(3351, part2);
+    (part1, part2)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_six() {
+        assert_eq!((6504, 3351), six());
+    }
 }
