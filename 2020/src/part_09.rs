@@ -1,4 +1,4 @@
-fn main() {
+pub fn nine() -> (usize, usize) {
     let input = std::fs::read_to_string("data/09.in").unwrap();
     let input: Vec<usize> = input.lines().map(|a| a.parse().unwrap()).collect();
 
@@ -20,7 +20,6 @@ fn main() {
             break;
         }
     }
-    println!("part1: {}", part1);
 
     let mut part2 = 0;
     for i in 2..input.len() {
@@ -32,5 +31,15 @@ fn main() {
             }
         }
     }
-    println!("part2: {}", part2);
+    (part1, part2)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn eleven() {
+        assert_eq!((466456641, 55732936), nine());
+    }
 }
