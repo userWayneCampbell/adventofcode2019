@@ -1,4 +1,4 @@
-fn main() {
+pub fn four() -> (usize, usize) {
     let input = std::fs::read_to_string("data/04.in").unwrap();
 
     let mut num = 0;
@@ -14,7 +14,7 @@ fn main() {
             num += 1;
         }
     }
-    println!("part1: {}", num);
+    let part1 = num;
 
     let mut total_correct = 0;
     for line in input.split("\n\n") {
@@ -58,5 +58,15 @@ fn main() {
             total_correct += 1;
         }
     }
-    println!("part2: {}", total_correct);
+    (part1, total_correct)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_four() {
+        assert_eq!((228, 175), four());
+    }
 }

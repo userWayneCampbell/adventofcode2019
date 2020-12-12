@@ -1,6 +1,6 @@
 use std::convert::TryFrom;
 
-fn main() {
+pub fn three() -> (usize, usize) {
     let input = std::fs::read_to_string("data/03.1.in").unwrap();
 
     let mut tiles = vec![];
@@ -13,20 +13,16 @@ fn main() {
     }
 
     // part 1
-    let second = calculate_trees(&tiles, 3, 1);
-    assert_eq!(207, second);
-    println!("part1: {}", second);
+    let part1 = calculate_trees(&tiles, 3, 1);
 
     // part 2
     let slopes = vec![(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
-
-    let result: usize = slopes
+    let part2: usize = slopes
         .iter()
         .map(|(right, down)| calculate_trees(&tiles, *right, *down))
         .product();
 
-    assert_eq!(2_655_892_800, result);
-    println!("part2: {}", result);
+    (part1, part2)
 }
 
 fn calculate_trees(tiles: &[Vec<Tile>], right: usize, down: usize) -> usize {
@@ -62,5 +58,15 @@ impl TryFrom<char> for Tile {
             '#' => Ok(Self::Tree),
             _ => Err("oh no"),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_three() {
+        assert_eq!((207, 2_655_892_800), three());
     }
 }

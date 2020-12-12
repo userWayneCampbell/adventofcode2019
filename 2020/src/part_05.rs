@@ -1,4 +1,4 @@
-fn main() {
+pub fn five() -> (usize, usize) {
     let input = std::fs::read_to_string("data/05.in").unwrap();
 
     let seats: Vec<usize> = input
@@ -18,12 +18,22 @@ fn main() {
 
     let min = seats.iter().min().unwrap();
     let max = seats.iter().max().unwrap();
-    println!("part1 max: {}", max);
-    println!("min: {}", min);
+    let part1 = max;
 
     for x in *min..=*max {
         if !seats.contains(&x) {
-            println!("part2: seat: {}", x);
+            return (*part1, x)
         }
+    }
+    unreachable!();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_five() {
+        assert_eq!((989, 548), five());
     }
 }

@@ -1,12 +1,9 @@
-fn main() {
+pub fn two() -> (usize, usize) {
     let input = std::fs::read_to_string("data/02.in").unwrap();
-    let one = part1(&input);
-    println!("{}", one);
-    assert_eq!(one, 586);
+    let part1 = part1(&input);
 
-    let two = part2(&input);
-    println!("{}", two);
-    assert_eq!(two, 352);
+    let part2 = part2(&input);
+    (part1, part2)
 }
 
 fn p(input: &str) -> (Vec<&str>, Vec<usize>) {
@@ -53,4 +50,14 @@ fn part2(input: &str) -> usize {
             }
         })
         .sum()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_two() {
+        assert_eq!((586, 352), two());
+    }
 }
