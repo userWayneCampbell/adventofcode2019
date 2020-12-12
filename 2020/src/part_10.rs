@@ -1,4 +1,4 @@
-fn main() {
+pub fn ten() -> (usize, usize) {
     let input = std::fs::read_to_string("data/10.in").unwrap();
     let mut input: Vec<usize> = input.lines().map(|a| a.parse().unwrap()).collect();
 
@@ -22,7 +22,6 @@ fn main() {
     }
 
     let part1 = (three_jolt) * one_jolt;
-    println!("{}", part1);
 
     input.push(0);
     input.sort_unstable();
@@ -30,15 +29,14 @@ fn main() {
     let mut results = std::collections::HashMap::new();
     let part2 = maybe_good_possible_results(&input, 0, &mut results);
 
-    println!("part2: {}", part2);
-    assert_eq!(226_775_649_501_184, part2);
+    (part1, part2)
 }
 
 fn maybe_good_possible_results(
     adapters: &[usize],
     current: usize,
-    results: &mut std::collections::HashMap<usize, u64>,
-) -> u64 {
+    results: &mut std::collections::HashMap<usize, usize>,
+) -> usize {
     if current == adapters.len() - 1 {
         return 1;
     }
@@ -47,7 +45,7 @@ fn maybe_good_possible_results(
         return *value;
     }
 
-    let possibilities: u64 = ((current + 1)..adapters.len())
+    let possibilities: usize = ((current + 1)..adapters.len())
         .take_while(|index| adapters[*index] <= adapters[current] + 3)
         .map(|index| maybe_good_possible_results(adapters, index, results))
         .sum();
@@ -55,4 +53,14 @@ fn maybe_good_possible_results(
     results.insert(current, possibilities);
 
     possibilities
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ten() {
+        assert_eq!((2590, 226775649501184), ten());
+    }
 }

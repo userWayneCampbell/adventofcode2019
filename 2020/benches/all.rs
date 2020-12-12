@@ -1,5 +1,14 @@
+use advent_of_code2020::part_10;
 use advent_of_code2020::part_11::Part;
 use criterion::{criterion_group, criterion_main, Criterion};
+
+pub fn bench_10(c: &mut Criterion) {
+    c.bench_function("10_both", |b| {
+        b.iter(|| {
+            assert_eq!((2590, 226775649501184), part_10::ten());
+        })
+    });
+}
 
 pub fn bench_11(c: &mut Criterion) {
     c.bench_function("11_part1", |b| {
@@ -22,5 +31,5 @@ pub fn bench_11(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, bench_11);
+criterion_group!(benches, bench_10, bench_11);
 criterion_main!(benches);
