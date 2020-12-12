@@ -2,19 +2,6 @@ const FILLED: char = '#';
 const EMPTY: char = 'L';
 const FLOOR: char = '.';
 
-fn main() {
-    let input = std::fs::read_to_string("data/11.in").unwrap();
-    let seats: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
-
-    let part1 = Part::One.steps(seats.clone());
-    println!("{}", part1);
-    assert_eq!(2211, part1);
-
-    let part2 = Part::Two.steps(seats.clone());
-    println!("{}", part2);
-    assert_eq!(1995, part2);
-}
-
 pub enum Part {
     One,
     Two,
@@ -30,7 +17,7 @@ impl Part {
     }
 
     /// step through until the current seats(last evaluated) == the new seats, then do summation of the '#'s
-    fn steps(&self, seats: Vec<Vec<char>>) -> usize {
+    pub fn steps(&self, seats: Vec<Vec<char>>) -> usize {
         let mut current_seats = seats;
         loop {
             let new_seats = self.step(&current_seats);
@@ -170,5 +157,22 @@ impl Part {
             }
         }
         new_seats
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn eleven() {
+        let input = std::fs::read_to_string("data/11.in").unwrap();
+        let seats: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
+
+        let part1 = Part::One.steps(seats.clone());
+        assert_eq!(2211, part1);
+
+        let part2 = Part::Two.steps(seats.clone());
+        assert_eq!(1995, part2);
     }
 }
