@@ -42,12 +42,8 @@ impl Part {
         // sum of '#' in 2d vec
         current_seats
             .iter()
-            .map(|x| {
-                x.iter()
-                    .map(|y| if *y == FILLED { 1 } else { 0 })
-                    .sum::<usize>()
-            })
-            .sum::<usize>()
+            .map(|x| x.iter().filter(|a| *a == &FILLED).count())
+            .fold(0, |a, b| a + b) as usize
     }
 
     fn step(&self, seats: &Vec<Vec<char>>) -> Vec<Vec<char>> {
