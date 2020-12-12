@@ -3,7 +3,7 @@ use std::str::FromStr;
 use std::{collections::HashSet, fs};
 
 #[derive(Debug, Clone)]
-enum Instruction {
+pub enum Instruction {
     ACC(isize),
     JMP(isize),
     NOP(isize),
@@ -24,15 +24,15 @@ impl FromStr for Instruction {
     }
 }
 
-#[derive(Debug)]
-struct State {
-    pc: usize,
-    acc: isize,
+#[derive(Debug, Clone, Copy)]
+pub enum Flag {
+    HALT,
 }
 
-#[derive(Debug, Clone, Copy)]
-enum Flag {
-    HALT,
+#[derive(Debug)]
+pub struct State {
+    pc: usize,
+    acc: isize,
 }
 
 impl State {
@@ -72,7 +72,7 @@ fn run_to_completion(prog: &[Instruction]) -> (Option<Flag>, State) {
     (None, state)
 }
 
-fn main() {
+pub fn eight() -> (isize, isize) {
     let tape: Vec<Instruction> = fs::read_to_string("data/08.in")
         .unwrap()
         .lines()
@@ -81,8 +81,6 @@ fn main() {
         .unwrap();
 
     let part1 = run_to_completion(&tape).1.acc;
-    assert_eq!(part1, 1179);
-    println!("Part 1: {}", part1);
 
     for i in 0..tape.len() {
         let op = match &tape[i] {
@@ -94,9 +92,18 @@ fn main() {
         mod_tape[i] = op;
 
         if let (Some(_), state) = run_to_completion(&mod_tape) {
-            assert_eq!(1089, state.acc);
-            println!("Part 2: {}", state.acc);
-            break;
+            return (part1, state.acc)
         }
+    }
+    unreachable!();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_eight() {
+        assert_eq!((1179, 1089), eight());
     }
 }

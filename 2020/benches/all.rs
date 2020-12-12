@@ -1,7 +1,16 @@
+use advent_of_code2020::part_08;
 use advent_of_code2020::part_09;
 use advent_of_code2020::part_10;
 use advent_of_code2020::part_11::Part;
 use criterion::{criterion_group, criterion_main, Criterion};
+
+pub fn bench_8(c: &mut Criterion) {
+    c.bench_function("8_both", |b| {
+        b.iter(|| {
+            assert_eq!((1179, 1089), part_08::eight());
+        })
+    });
+}
 
 pub fn bench_9(c: &mut Criterion) {
     c.bench_function("9_both", |b| {

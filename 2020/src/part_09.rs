@@ -39,7 +39,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn eleven() {
+    fn test_nine() {
         assert_eq!((466456641, 55732936), nine());
     }
 }
