@@ -172,7 +172,7 @@ mod tests {
         let part1 = Part::One.steps(seats.clone());
         assert_eq!(2211, part1);
 
-        let part2 = Part::Two.steps(seats.clone());
+        let part2 = Part::Two.steps(seats);
         assert_eq!(1995, part2);
     }
 }
