@@ -8,6 +8,7 @@ pub fn bench_11(c: &mut Criterion) {
             let seats: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
 
             let _part1 = Part::One.steps(seats);
+            assert_eq!(2211, _part1);
         })
     });
     c.bench_function("11_part2", |b| {
@@ -15,7 +16,8 @@ pub fn bench_11(c: &mut Criterion) {
             let input = include_str!("../data/11.in");
             let seats: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
 
-            let _part1 = Part::Two.steps(seats);
+            let _part2 = Part::Two.steps(seats);
+            assert_eq!(1995, _part2);
         })
     });
 }
