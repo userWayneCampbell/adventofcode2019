@@ -21,7 +21,7 @@ impl Bags {
     }
 }
 
-fn main() {
+pub fn seven() -> (usize, usize) {
     let input = std::fs::read_to_string("data/07.in").unwrap();
     let mut bags = HashMap::new();
 
@@ -63,10 +63,17 @@ fn main() {
         .iter()
         .filter(|&(color, _)| bags.part1(color))
         .count();
-    assert_eq!(274, part1);
-    println!("{}", part1);
 
     let part2 = bags.part2("shiny gold") - 1;
-    assert_eq!(158_730, part2);
-    println!("{}", part2);
+    (part1, part2)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_seven() {
+        assert_eq!((274, 158_730), seven());
+    }
 }

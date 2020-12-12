@@ -1,3 +1,4 @@
+pub mod part_07;
 pub mod part_08;
 pub mod part_09;
 pub mod part_10;
