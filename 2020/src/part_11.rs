@@ -30,7 +30,7 @@ impl Part {
         current_seats
             .iter()
             .map(|x| x.iter().filter(|a| *a == &FILLED).count())
-            .fold(0, |a, b| a + b) as usize
+            .sum()
     }
 
     fn step(&self, seats: &Vec<Vec<char>>) -> Vec<Vec<char>> {
